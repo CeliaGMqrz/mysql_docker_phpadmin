@@ -20,6 +20,7 @@ PROJECT_DIR=$PROJECTS_DIR/mysql_docker_phpadmin
 mkdir -p $PROJECTS_DIR
 PROJECT_NAME=mysql_docker_phpadmin
 PROJECT_DIR=$PROJECTS_DIR/$PROJECT_NAME
+
 ```
 
 Cargar también las variables de entorno necesarias del fichero [.env](https://github.com/CeliaGMqrz/mysql_docker_phpadmin/blob/main/.env)
@@ -45,6 +46,7 @@ baids-reload
 ## Desplegar el entorno
 
 ```shell 
+cd $PROJECT_DIR
 dev-mysql_docker_phpadmin.test-deploy
 ```
 
