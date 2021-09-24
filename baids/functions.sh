@@ -3,8 +3,7 @@
 # Entorno Dev
 function dev-mysql_docker_phpadmin.test-init() {
 
-  export ENVIRONMENT="dev"
-  mysql_docker_phpadmin.test-init ${ENVIRONMENT}
+  cd ${PROJECT_DIR}
 
 }
 
@@ -25,6 +24,7 @@ function dev-mysql_docker_phpadmin.test-mysql-shell() {
 
 # Desplegar el entorno
 function dev-mysql_docker_phpadmin.test-deploy() {
+  
 
   dev-mysql_docker_phpadmin.test-init
   docker-compose --file ${PROJECT_DIR}/docker-compose.yaml up -d
