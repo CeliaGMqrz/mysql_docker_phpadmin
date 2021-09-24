@@ -36,6 +36,7 @@ Los baids son alias que llaman a funciones predefinidas para el proyecto.
 Para descargar baids acceder [aquí](https://github.com/rcmorano/baids#installation)
 
 ```shell 
+curl -sSL https://raw.githubusercontent.com/rcmorano/baids/master/baids | bash -s install
 ln -fs $PROJECT_DIR/baids $HOME/.baids/functions.d/$PROJECT_NAME
 baids-reload
 ```
