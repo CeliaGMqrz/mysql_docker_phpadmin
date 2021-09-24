@@ -22,7 +22,7 @@ PROJECT_NAME=mysql_docker_phpadmin
 PROJECT_DIR=$PROJECTS_DIR/$PROJECT_NAME
 ```
 
-Cargar también las variables de entorno necesarias del fichero .env
+Cargar también las variables de entorno necesarias del fichero [.env](https://github.com/CeliaGMqrz/mysql_docker_phpadmin/blob/main/.env)
 
 ## Clonar el respositorio del proyecto
 

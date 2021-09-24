@@ -27,7 +27,7 @@ function dev-mysql_docker_phpadmin.test-mysql-shell() {
 function dev-mysql_docker_phpadmin.test-deploy() {
 
   dev-mysql_docker_phpadmin.test-init
-  docker-compose --file ${PROJECTS_DIR}/docker-compose.yaml up -d
+  docker-compose --file ${PROJECT_DIR}/docker-compose.yaml up -d
 
 }
 
@@ -35,7 +35,7 @@ function dev-mysql_docker_phpadmin.test-deploy() {
 function dev-mysql_docker_phpadmin.test-down() {
 
   dev-mysql_docker_phpadmin.test-init
-  docker-compose --file ${PROJECTS_DIR}/docker-compose.yaml down
+  docker-compose --file ${PROJECT_DIR}/docker-compose.yaml down
 
 }
 
