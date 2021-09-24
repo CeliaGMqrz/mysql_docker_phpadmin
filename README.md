@@ -15,7 +15,7 @@ En este caso vamos a usar MySQL.
 ## Cargar variables de entorno y crear directorio de trabajo
 
 ```shell
-PROJECTS_DIR=$HOME/Projects/test
+PROJECTS_DIR=$HOME/Projects
 PROJECT_DIR=$PROJECTS_DIR/mysql_docker_phpadmin
 mkdir -p $PROJECTS_DIR
 PROJECT_NAME=mysql_docker_phpadmin
@@ -71,28 +71,3 @@ Este backup se guarda en el directorio data del proyecto.
 dev-mysql_docker_phpadmin.test-mysql-dump-db 
 ```
 
-
-Opción 1
-
-`mysql-docker.sh`
-```shell
-# Backup
-docker exec CONTAINER /usr/bin/mysqldump -u root --password=root DATABASE > backup.sql
-
-# Restore
-cat backup.sql | docker exec -i CONTAINER /usr/bin/mysql -u root --password=root DATABASE
-```
-
-Opción 2
-
-```shell
-# Backup
-docker exec some-mysql sh -c 'exec mysqldump --all-databases -u<user> -p<password> <database>' > /some/path/on/your/host/all-databases.sql
-
-
-# Restore
-docker exec -i some-mysql sh -c 'exec mysql -u<user> -p<password> <database>' < /some/path/on/your/host/all-databases.sql
-
-```
-
-docker exec some-mysql sh -c 'exec mysqldump --all-databases -u root -p root escuela' > /home/cgarcia/dockerCompose/mysql
