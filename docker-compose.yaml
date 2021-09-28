@@ -1,8 +1,6 @@
 version: '3.7'
-
-# Definimos la red
 networks:
-  mired:
+  milocal:
     driver: bridge
 
 # Definimos los servicios
@@ -10,16 +8,16 @@ services:
   # Definimos la base de datos
   mysql:
     container_name: mysql_server
-    image: ${MYSQL_IMAGE}
+    image: mysql:5.7
     restart: always
     # Indicamos las variables de entorno con el usuario y contraseña.
     # Se recomienda usar variables de entorno en un fichero separado para no mostrar las credenciales en claro.
     # Pero al ser una prueba usaremos las credenciales en claro.
     environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_ROOT_USER: ${MYSQL_ROOT_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: escuela
+      MYSQL_ROOT_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
     # Exponemos los puertos
     ports:
     - "3306:3306"
@@ -29,12 +27,18 @@ services:
       target: /var/lib/mysql
     # Se definen las redes
     networks:
-      - mired
+      - milocal
     # Nombre de la máquina
     hostname: mysql
+    logging:
+      driver: fluentd
+      options:
+        fluentd-async-connect: "true"
+        fluentd-address: localhost:24224
+        tag: drupal.logs
   
   phpmyadmin:
-    image: ${PHPMYADMIN_IMAGE}
+    image: phpmyadmin/phpmyadmin
     ports:
       - 8080:80
     environment:
@@ -43,8 +47,13 @@ services:
       - mysql
     # Se definen las redes
     networks:
-      - mired
-
+      - milocal
+    logging:
+      driver: fluentd
+      options:
+        fluentd-async-connect: "true"
+        fluentd-address: localhost:24224
+        tag: drupal.logs
 volumes:
   mysql_data:
     driver: local
